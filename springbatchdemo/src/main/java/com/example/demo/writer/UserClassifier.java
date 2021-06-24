@@ -32,9 +32,9 @@ public class UserClassifier implements Classifier<User, ItemWriter<? super User>
 
 	@Override
 	public ItemWriter<? super User> classify(User user) {
-		if(user.getStatus() == "suspend") {
+		if(user.getStatus().equals("S")) {
 			return bItemWriter;
-		}else if(user.getStatus() == "active") {
+		}else if(user.getStatus().equals("A")) {
 			return cItemWriter;
 		}else {
 			return dItemWriter;
