@@ -2,16 +2,29 @@ package com.example.demo.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
-public class InactiveUser extends User {
+@Entity
+public class InactiveUser {
 
 	@Id
 	private Integer id;
 	private String name;
-	private String status;
 	private Integer salary;
 	private Date time;
+	
+	public InactiveUser() {
+		super();
+	}
+
+	public InactiveUser(Integer id, String name, Integer salary, Date time) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+		this.time = time;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -24,12 +37,6 @@ public class InactiveUser extends User {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	public Integer getSalary() {
 		return salary;
