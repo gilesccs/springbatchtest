@@ -1,5 +1,11 @@
 package com.example.demo.repository;
 
-public interface SuspendedUserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.model.SuspendedUser;
+
+@Repository
+public interface SuspendedUserRepository extends JpaRepository<SuspendedUser, Integer>{
 
 }
