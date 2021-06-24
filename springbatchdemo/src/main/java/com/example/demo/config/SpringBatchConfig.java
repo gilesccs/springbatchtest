@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
 import com.example.demo.writer.*;
 
@@ -36,7 +37,7 @@ public class SpringBatchConfig {
 	@Bean
 	public Job job(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory
 			, ItemReader<User> itemReader, ItemProcessor<User, User> itemProcessor,
-			ItemWriter<User> itemWriter) {
+			ItemWriter<User> itemWriter) throws Exception {
 		Step step = stepBuilderFactory.get("ETL-file-LOAD")
 				.<User, User>chunk(100)
 				.reader(itemReader)
@@ -68,14 +69,15 @@ public class SpringBatchConfig {
 	}
 	
 	@Bean 
-	public DBWriter DBWriter(){
+	public DBWriter oDBWriter(){
 		return new DBWriter();
 	}
 	
 	@Bean
+	@Primary
     public ClassifierCompositeItemWriter<User> classifierUserCompositeItemWriter() throws Exception {
         ClassifierCompositeItemWriter<User> compositeItemWriter = new ClassifierCompositeItemWriter<>();
-        compositeItemWriter.setClassifier(new UserClassifier(DBWriter(),SuspendedWriter(),ActiveWriter(),InactiveWriter()));
+        compositeItemWriter.setClassifier(new UserClassifier(oDBWriter(),SuspendedWriter(),ActiveWriter(),InactiveWriter()));
         return compositeItemWriter;
     }
 	
