@@ -1,4 +1,4 @@
 id,name,status,salary
-1,Peter,active,12000
-2,Sam,suspend,1300
-3,Ryan,inactive,1400
+1,Peter,A,12000
+2,Sam,S,1300
+3,Ryan,I,1400

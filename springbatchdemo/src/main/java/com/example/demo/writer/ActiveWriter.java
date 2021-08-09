@@ -33,7 +33,12 @@ public class ActiveWriter implements ItemWriter<User>{
 //			userRepo.save(aUser);
 //		}
 		userRepo.saveAll(newList);
+		for(User test:items) {
+			test.setStatus("Z");
+			
+		}
 		uRepo.saveAll(items);
+//		uRepo.saveAll(items);
 	}
 
 }
